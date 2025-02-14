@@ -24,18 +24,28 @@ namespace ConversorTemperatura
 
         private void btnConverter_Click(object sender, EventArgs e)
         {
-            //declaração das variáveis
-            int Tcel, TKel, TFah;
+            try
+            {
+                //declaração das variáveis
+                int Tcel, TKel, TFah;
 
-            //lendo a temperatura a ser convertida
-            Tcel = int.Parse(txtCelcius.Text);
+                //lendo a temperatura a ser convertida
+                Tcel = int.Parse(txtCelcius.Text);
 
-            //calculando as conversões
-            TKel = Tcel + 273;
-            TFah = (((Tcel * 9) / 5) + 32);
+                //calculando as conversões
+                TKel = Tcel + 273;
+                TFah = (((Tcel * 9) / 5) + 32);
 
-            lblTk.Text = TKel.ToString();
-            lblTf.Text = TFah.ToString();
+                lblTk.Text = TKel.ToString();
+                lblTf.Text = TFah.ToString();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Esta não é uma entrada válida!!", "* ATENÇÃO, ERRO", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtCelcius.Text = "";
+                txtCelcius.Focus();
+            }
+
         }
     }
 }
